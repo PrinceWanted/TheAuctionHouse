@@ -9,4 +9,5 @@ public interface BidderInterface extends Remote {
     public void regToRoom(BidSession bs) throws RemoteException;
     public void viewProductList() throws RemoteException;
 
+
 }

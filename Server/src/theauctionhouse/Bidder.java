@@ -26,13 +26,15 @@ public class Bidder extends User implements BidderInterface {
         this.balance = balance;
     }
 
-    public void bid(int bidprice, BidSession bs) {
-    }
 
-    public void regToRoom(BidSession bs) {
+    @Override
+    public void bid(int bidprice, BidSession bs)throws RemoteException {
     }
-
-    public void viewProductList() {
+    @Override
+    public void regToRoom(BidSession bs) throws RemoteException{
+    }
+    @Override
+    public void viewProductList() throws RemoteException{
     }
 
 
