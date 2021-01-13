@@ -1,6 +1,9 @@
 package theauctionhouse;
 
-public class User {
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+public class User extends UnicastRemoteObject {
     private int uID;
     private String Uname;
     private String Upass;
@@ -11,10 +14,10 @@ public class User {
     private int Unumber;
 
 //Contructors
-    public User() {
+    public User() throws RemoteException {
     }
 
-    public User(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber) {
+    public User(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber)  throws RemoteException{
         this.uID = uID;
         Uname = uname;
         Upass = upass;
@@ -91,7 +94,7 @@ public class User {
     }
     //methods
 
-    public void createAccount(String name,String pass, String mail){
+    public void createAccount(String name,String pass, String mail) throws RemoteException{
         User u = new User(0,name,pass,mail,0,"","",0);
     }
     public void editAccount(String name,String pass, String mail){
