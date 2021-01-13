@@ -1,0 +1,19 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+.idea
+*.iml
+out
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
