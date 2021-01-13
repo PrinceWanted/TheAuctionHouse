@@ -10,6 +10,15 @@ public class BiddingRoom {
     private Bidder HighestBidder;
     private int HighestPrice;
 
+    public BiddingRoom(int roomNumber, int bidderCount, Product biddingProd, int biddingInsurance, Bidder highestBidder, int highestPrice) {
+        RoomNumber = roomNumber;
+        BidderCount = bidderCount;
+        BiddingProd = biddingProd;
+        BiddingInsurance = biddingInsurance;
+        HighestBidder = highestBidder;
+        HighestPrice = highestPrice;
+    }
+
     public int getRoomNumber() {
         return RoomNumber;
     }
