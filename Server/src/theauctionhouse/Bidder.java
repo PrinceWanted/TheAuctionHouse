@@ -32,6 +32,7 @@ public class Bidder extends User implements BidderInterface {
     }
     @Override
     public void regToRoom(BidSession bs) throws RemoteException{
+        bs.getBiddersList().add(this);
     }
     @Override
     public void viewProductList() throws RemoteException{

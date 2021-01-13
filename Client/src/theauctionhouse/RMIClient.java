@@ -10,9 +10,13 @@ public class RMIClient {
 
         try {
 
+           // BidSession b=new BidSession();
+
             Registry registry = LocateRegistry.getRegistry(1099);
             BidderInterface BidInterface = (BidderInterface)registry.lookup("Binterface");
-            System.out.println(BidInterface.add(68,1));
+
+
+//                BidInterface.regToRoom(b);
 
 
 
