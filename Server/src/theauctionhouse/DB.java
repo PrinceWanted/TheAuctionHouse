@@ -90,5 +90,29 @@ public class DB {
         collection = database.getCollection("BiddingRoom");
         collection.updateOne(Filters.eq("umail", mail), Updates.set("BidderCount", HighestPrice));
     }
+    //-----what Mekawy did so you can blame him later-----//
+    public void insertBidder(Bidder b) {
+        collection = database.getCollection("Bidder");
 
+        collection.insertOne(Document.parse(gson.toJson(b)));
+        System.out.println("Bidder inserted");
+    }
+    public void insertProduct(Product p) {
+        collection = database.getCollection("Product");
+
+        collection.insertOne(Document.parse(gson.toJson(p)));
+        System.out.println("Product inserted");
+    }
+    public void deleteProduct(int p) {
+        collection = database.getCollection("Product");
+
+        collection.deleteOne(Filters.eq("ID",p)); //is this how we delete?
+        System.out.println("Product is removed!");
+    }
+    public void insertBidSession(BidSession bs) {
+        collection = database.getCollection("BidSession");
+
+        collection.insertOne(Document.parse(gson.toJson(bs)));
+        System.out.println("BidSession inserted");
+    }
 }
