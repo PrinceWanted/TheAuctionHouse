@@ -9,4 +9,6 @@ public interface SellerInterface extends Remote {
     public SellerDTO getDTO() throws RemoteException;
 
     public void returnDTO(SellerDTO d) throws RemoteException;
+
+    public void postProduct(Product r) throws RemoteException;
 }

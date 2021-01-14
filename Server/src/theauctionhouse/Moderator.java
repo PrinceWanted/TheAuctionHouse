@@ -8,10 +8,14 @@ import java.util.ArrayList;
 
 public class Moderator extends User implements ModeratorInterface, Serializable {
     private static Moderator instance;
-    ArrayList<String> pendingProducts = new ArrayList<String>();
+    ArrayList<Product> pendingProducts = new ArrayList<Product>();
 
     private Moderator() throws RemoteException {
+        pendingProducts = new ArrayList<Product>();
+    }
 
+    public ArrayList<Product> getPendingProducts() {
+        return pendingProducts;
     }
 
     public static Moderator getInstance() throws RemoteException {

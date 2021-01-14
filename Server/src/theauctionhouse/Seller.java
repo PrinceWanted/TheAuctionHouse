@@ -9,7 +9,7 @@ public class Seller extends User implements SellerInterface, Serializable {
     private float balance;
     private ArrayList<Product> postedProducts;
 
-    public Seller() throws RemoteException {
+    public Seller(int i, String hassan, String pass, String mail, int i1, String male, String hamada_street, int i2, int i3) throws RemoteException {
     }
 
     public Seller(float balance) throws RemoteException {
@@ -17,10 +17,15 @@ public class Seller extends User implements SellerInterface, Serializable {
 
     }
 
-    public Seller(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, float balance) throws RemoteException {
-        super(uID, uname, upass, umail, uage, gender, uaddress, unumber);
+    public Seller(float balance, ArrayList<Product> postedProducts) throws RemoteException {
         this.balance = balance;
-       postedProducts = new ArrayList<Product>();
+        this.postedProducts = postedProducts;
+    }
+
+    public Seller(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type, float balance, ArrayList<Product> postedProducts) throws RemoteException {
+        super(uID, uname, upass, umail, uage, gender, uaddress, unumber, type);
+        this.balance = balance;
+        this.postedProducts = postedProducts;
     }
 
     public float getBalance() {
@@ -58,4 +63,12 @@ public class Seller extends User implements SellerInterface, Serializable {
         setBalance(d.getBalance());
         setPostedProducts(d.getPostedProducts());
     }
+
+    @Override
+    public void postProduct(Product r) throws RemoteException {
+            Moderator.getInstance().getPendingProducts().add(r);
+            this.getPostedProducts().add(r);
+    }
+
+
 }
