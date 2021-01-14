@@ -11,11 +11,12 @@ public class Bidder extends User implements BidderInterface, Serializable {
     public Bidder() throws RemoteException {
     }
 
-    public Bidder(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber) throws RemoteException {
-        super(uID, uname, upass, umail, uage, gender, uaddress, unumber);
+    public Bidder(int balance) throws RemoteException {
+        this.balance = balance;
     }
 
-    public Bidder(int balance) throws RemoteException {
+    public Bidder(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type, int balance) throws RemoteException {
+        super(uID, uname, upass, umail, uage, gender, uaddress, unumber, type);
         this.balance = balance;
     }
 

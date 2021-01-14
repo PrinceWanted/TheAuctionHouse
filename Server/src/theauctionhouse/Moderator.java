@@ -23,15 +23,12 @@ public class Moderator extends User implements ModeratorInterface, Serializable 
 
 
     @Override
-    public void RemoveProduct(BidSession bs, int ProductID) throws RemoteException {
+    public void RemoveProduct(BidSession bs) throws RemoteException {
 
-        for (BiddingRoom room : bs.getRoomList()) {
+        if (bs.getAvailable())
+            bs.setAvailable(false);
+        else System.out.println("Product is not available");
 
-            if (room.getBiddingProd().getID() == ProductID) {
-                bs.getRoomList().remove(room);
-            }else System.out.println("Product not found.");
-
-        }
 
     }
 }
