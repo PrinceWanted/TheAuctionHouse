@@ -1,13 +1,17 @@
 package theauctionhouse;
 
 import com.google.gson.Gson;
+import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -52,44 +56,45 @@ public class DB {
     }
 
     //Edit seller balance
-    public void editSellerBalance(int Balance , String mail){
+    public void editSellerBalance(int Balance, String mail) {
         collection = database.getCollection("Seller");
         collection.updateOne(Filters.eq("umail", mail), Updates.set("balance", Balance));
         System.out.println("Seller Balance edited");
     }
 
     // Edit bidder balance
-    public void editBidderBalance(int Balance , String mail){
+    public void editBidderBalance(int Balance, String mail) {
         collection = database.getCollection("Bidder");
         collection.updateOne(Filters.eq("umail", mail), Updates.set("balance", Balance));
         System.out.println("Bidder Balance edited");
     }
 
     // Create bidding room
-    public void createBiddingRoom(BiddingRoom b){
+    public void createBiddingRoom(BiddingRoom b) {
         collection = database.getCollection("BiddingRoom");
         collection.insertOne(Document.parse(gson.toJson(b)));
         System.out.println("Bidding Room Created");
     }
 
     // Delete bidding room
-    public void deleteBiddingRoom(int RoomNumber){
+    public void deleteBiddingRoom(int RoomNumber) {
         collection = database.getCollection("BiddingRoom");
         collection.deleteOne(Filters.eq("RoomNumber", RoomNumber));
         System.out.println("Bidding Room deleted");
     }
 
     // Edit bidder count in bidding room
-    public void editbidderCount(String bidderCount, String mail){
+    public void editbidderCount(String bidderCount, String mail) {
         collection = database.getCollection("BiddingRoom");
         collection.updateOne(Filters.eq("umail", mail), Updates.set("BidderCount", bidderCount));
     }
 
     // Editing highest price in bidding room
-    public void editHighestPrice(String HighestPrice, String mail){
+    public void editHighestPrice(String HighestPrice, String mail) {
         collection = database.getCollection("BiddingRoom");
         collection.updateOne(Filters.eq("umail", mail), Updates.set("BidderCount", HighestPrice));
     }
+
     //-----what Mekawy did so you can blame him later-----//
     public void insertBidder(Bidder b) {
         collection = database.getCollection("Bidder");
@@ -97,18 +102,21 @@ public class DB {
         collection.insertOne(Document.parse(gson.toJson(b)));
         System.out.println("Bidder inserted");
     }
+
     public void insertProduct(Product p) {
         collection = database.getCollection("Product");
 
         collection.insertOne(Document.parse(gson.toJson(p)));
         System.out.println("Product inserted");
     }
+
     public void deleteProduct(int p) {
         collection = database.getCollection("Product");
 
-        collection.deleteOne(Filters.eq("ID",p)); //is this how we delete?
+        collection.deleteOne(Filters.eq("ID", p)); //is this how we delete?
         System.out.println("Product is removed!");
     }
+
     public void insertBidSession(BidSession bs) {
         collection = database.getCollection("BidSession");
 
@@ -116,29 +124,52 @@ public class DB {
         System.out.println("BidSession inserted");
     }
 
-    public void readUser(String type, String name){
+    public void readUser(String type, String name) {
         collection = database.getCollection(type);
-        Document Result = (Document)collection.find(Filters.all("Uname",name));
+        Document Result = (Document) collection.find(Filters.all("Uname", name));
         System.out.println(Result);
 
     }
 
-    public Seller retrieveSeller (String name){
+    public Seller retrieveSeller(String name) {
         collection = database.getCollection("Seller");
-        Document Result = (Document)collection.find(Filters.all("Uname",name));
+        Document Result = (Document) collection.find(Filters.all("Uname", name)).first();
         Seller user = gson.fromJson(Result.toJson(), Seller.class);
         return user;
     }
-    public Bidder retrieveBidder (String name){
+
+    public Bidder retrieveBidder(String name) {
         collection = database.getCollection("Bidder");
-        Document Result = (Document)collection.find(Filters.all("Uname",name));
+        Document Result = (Document) collection.find(Filters.all("Uname", name)).first();
         Bidder user = gson.fromJson(Result.toJson(), Bidder.class);
         return user;
     }
-    public Moderator retrieveModerator (String name){
+
+    public Moderator retrieveModerator(String name) {
         collection = database.getCollection("Moderator");
-        Document Result = (Document)collection.find(Filters.all("Uname",name));
+        Document Result = (Document) collection.find(Filters.all("Uname", name)).first();
         Moderator user = gson.fromJson(Result.toJson(), Moderator.class);
         return user;
     }
+
+    public void UserLogin(String type, String name, String pass) {
+        try {
+            if (type == "Seller") {
+                collection = database.getCollection("Seller");
+                Document Result = collection.aggregate(Arrays.asList(Aggregates.match(Filters.eq("Uname", name)), Aggregates.match(Filters.eq("Upass", pass)))).first();
+                System.out.println("Login Successful!");
+            } else if (type == "Bidder") {
+                collection = database.getCollection("Bidder");
+                Document Result = collection.aggregate(Arrays.asList(Aggregates.match(Filters.eq("Uname", name)), Aggregates.match(Filters.eq("Upass", pass)))).first();
+                System.out.println("Login Successful!");
+            } else if (type == "Moderator") {
+                collection = database.getCollection("Moderator");
+                Document Result = collection.aggregate(Arrays.asList(Aggregates.match(Filters.eq("Uname", name)), Aggregates.match(Filters.eq("Upass", pass)))).first();
+                System.out.println("Login Successful!");
+            }
+        } catch (Exception e) {
+            System.out.println("USer Error");
+        }
+    }
 }
+
