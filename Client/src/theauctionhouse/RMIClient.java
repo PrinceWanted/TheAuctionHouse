@@ -21,12 +21,12 @@ public class RMIClient {
             System.out.println(sellertest.getName());
             System.out.println(sellertest.getPass());
             System.out.println(sellertest.getAge());
-            System.out.println(sellertest.getGender());
+            System.out.println(sellertest.getGender() +"\n");
 
             sellertest.setName("Another Name");
             sellertest.getPostedProducts().add(new Product(1,"some product","This is a good product",5000));
             seller.returnDTO(sellertest);
-
+            System.out.println("Testing the data from server after updating it from client \n");
             SellerDTO dsd = seller.getDTO();
             System.out.println(dsd.getName());
             System.out.println(dsd.getPostedProducts().get(0).getName());
