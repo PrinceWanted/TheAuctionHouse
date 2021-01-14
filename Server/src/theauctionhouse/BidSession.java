@@ -1,56 +1,17 @@
 package theauctionhouse;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BidSession {
+public class BidSession implements Serializable {
 
 
-    private Bidder highestBidder;
-    private BiddingRoom BidRoom;
-    private Seller seller;
-    private Product biddingProd;
-    private ArrayList<Bidder> BiddersList;
+    private ArrayList<Bidder> BiddersList ;
+    private BiddingRoom Room;
 
-
-    public BidSession(Bidder highestBidder, BiddingRoom bidRoom, Seller seller, Product biddingProd, ArrayList<Bidder> biddersList) {
-        this.highestBidder = highestBidder;
-        BidRoom = bidRoom;
-        this.seller = seller;
-        this.biddingProd = biddingProd;
+    public BidSession(ArrayList<Bidder> biddersList, BiddingRoom room) {
         BiddersList = biddersList;
-    }
-
-
-    public Bidder getHighestBidder() {
-        return highestBidder;
-    }
-
-    public void setHighestBidder(Bidder highestBidder) {
-        this.highestBidder = highestBidder;
-    }
-
-    public BiddingRoom getBidRoom() {
-        return BidRoom;
-    }
-
-    public void setBidRoom(BiddingRoom bidRoom) {
-        BidRoom = bidRoom;
-    }
-
-    public Seller getSeller() {
-        return seller;
-    }
-
-    public void setSeller(Seller seller) {
-        this.seller = seller;
-    }
-
-    public Product getBiddingProd() {
-        return biddingProd;
-    }
-
-    public void setBiddingProd(Product biddingProd) {
-        this.biddingProd = biddingProd;
+        Room = room;
     }
 
     public ArrayList<Bidder> getBiddersList() {
@@ -59,6 +20,14 @@ public class BidSession {
 
     public void setBiddersList(ArrayList<Bidder> biddersList) {
         BiddersList = biddersList;
+    }
+
+    public BiddingRoom getRoom() {
+        return Room;
+    }
+
+    public void setRoom(BiddingRoom room) {
+        Room = room;
     }
 
     private Transaction endSession() {

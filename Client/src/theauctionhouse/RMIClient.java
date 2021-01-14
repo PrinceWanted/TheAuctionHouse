@@ -12,7 +12,7 @@ public class RMIClient {
 
         try {
 
-           // BidSession b=new BidSession();
+
 
             Registry registry = LocateRegistry.getRegistry(1099);
             //BidderInterface BidInterface = (BidderInterface)registry.lookup("Binterface");
@@ -33,11 +33,11 @@ public class RMIClient {
 
 
 
+            BidSession b=new BidSession();
+            BidderInterface BidInterface = (BidderInterface)registry.lookup("Binterface");
 
 
-
-
-//                BidInterface.regToRoom(b);
+               BidInterface.regToRoom(b);
 
 
 

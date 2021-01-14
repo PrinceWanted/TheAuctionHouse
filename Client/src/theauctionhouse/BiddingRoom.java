@@ -12,21 +12,25 @@ public class BiddingRoom implements Serializable {
     private int BiddingInsurance;
     private Bidder HighestBidder;
     private int HighestPrice;
+    private ArrayList<Bidder> BiddersList;
 
-
-    public BiddingRoom(int roomNumber, int bidderCount, Product biddingProd, int biddingInsurance, Bidder highestBidder, int highestPrice) {
+    public BiddingRoom(int roomNumber, int bidderCount, Product biddingProd, int biddingInsurance, Bidder highestBidder, int highestPrice, ArrayList<Bidder> biddersList) {
         RoomNumber = roomNumber;
         BidderCount = bidderCount;
         BiddingProd = biddingProd;
         BiddingInsurance = biddingInsurance;
         HighestBidder = highestBidder;
         HighestPrice = highestPrice;
-
+        BiddersList = biddersList;
     }
 
+    public ArrayList<Bidder> getBiddersList() {
+        return BiddersList;
+    }
 
-
-
+    public void setBiddersList(ArrayList<Bidder> biddersList) {
+        BiddersList = biddersList;
+    }
 
     public int getRoomNumber() {
         return RoomNumber;

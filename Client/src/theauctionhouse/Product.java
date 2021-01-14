@@ -52,11 +52,5 @@ public class Product implements Serializable {
         this.startingPrice = startingPrice;
     }
 
-/*    public User getOwner() {
-        return owner;
-    }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }*/
 }

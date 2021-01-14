@@ -31,10 +31,10 @@ public class Bidder extends User implements BidderInterface, Serializable {
     @Override
     public void bid(int bidprice, BidSession bs) throws RemoteException {
 
-        if (bs.getRoom().getHighestPrice() < bidprice) {
-            bs.getRoom().setHighestPrice(bidprice);
-            bs.getRoom().setHighestBidder(this);
-        } else System.out.println("Bid price is too low.");
+      if(bs.getBidRoom().getHighestPrice()<bidprice){
+          bs.getBidRoom().setHighestPrice(bidprice);
+          bs.getBidRoom().setHighestBidder(this);
+      }else System.out.println("Bid price is too low.");
 
     }
 
@@ -46,7 +46,6 @@ public class Bidder extends User implements BidderInterface, Serializable {
     @Override
     public void viewProductList() throws RemoteException {
 
-        //insert database function?
     }
 
 

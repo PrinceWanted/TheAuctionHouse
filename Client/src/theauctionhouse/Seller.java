@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class Seller extends User implements SellerInterface, Serializable {
+public class Seller extends User implements  Serializable {
 
     private float balance;
     private ArrayList<Product> postedProducts;
@@ -39,23 +39,5 @@ public class Seller extends User implements SellerInterface, Serializable {
         this.postedProducts = postedProducts;
     }
 
-    @Override
-    public SellerDTO getDTO() throws RemoteException {
-        SellerDTO a = new SellerDTO(super.getuID(), super.getUname(), super.getUpass(), super.getUmail() ,super.getUage() ,super.getGender() ,super.getUaddress() ,super.getUnumber(),getBalance(),postedProducts);
-        return a;
-    }
 
-    @Override
-    public void returnDTO(SellerDTO d) throws RemoteException {
-        super.setuID(d.getID());
-        super.setUname(d.getName());
-        super.setUpass(d.getPass());
-        super.setUmail(d.getMail());
-        super.setUage(d.getAge());
-        super.setGender(d.getGender());
-        super.setUaddress(d.getAddress());
-        super.setUnumber(d.getNumber());
-        setBalance(d.getBalance());
-        setPostedProducts(d.getPostedProducts());
-    }
 }

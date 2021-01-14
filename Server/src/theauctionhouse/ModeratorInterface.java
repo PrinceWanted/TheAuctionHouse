@@ -5,5 +5,5 @@ import java.rmi.RemoteException;
 
 public interface ModeratorInterface extends Remote {
 
-    public void AcceptAuctionReq(Product p) throws RemoteException;
+    public void RemoveProduct(BidSession bs, int ProductID) throws RemoteException;
 }
