@@ -115,4 +115,30 @@ public class DB {
         collection.insertOne(Document.parse(gson.toJson(bs)));
         System.out.println("BidSession inserted");
     }
+
+    public void readUser(String type, String name){
+        collection = database.getCollection(type);
+        Document Result = (Document)collection.find(Filters.all("Uname",name));
+        System.out.println(Result);
+
+    }
+
+    public Seller retrieveSeller (String name){
+        collection = database.getCollection("Seller");
+        Document Result = (Document)collection.find(Filters.all("Uname",name));
+        Seller user = gson.fromJson(Result.toJson(), Seller.class);
+        return user;
+    }
+    public Bidder retrieveBidder (String name){
+        collection = database.getCollection("Bidder");
+        Document Result = (Document)collection.find(Filters.all("Uname",name));
+        Bidder user = gson.fromJson(Result.toJson(), Bidder.class);
+        return user;
+    }
+    public Moderator retrieveModerator (String name){
+        collection = database.getCollection("Moderator");
+        Document Result = (Document)collection.find(Filters.all("Uname",name));
+        Moderator user = gson.fromJson(Result.toJson(), Moderator.class);
+        return user;
+    }
 }
