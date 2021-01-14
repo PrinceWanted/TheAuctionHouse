@@ -4,8 +4,15 @@ package theauctionhouse;
 public class AmericanExpress implements payMethod{
 
     @Override
-    public void pay(int amount, String sender, String reciever) {
-        ; //To change body of generated methods, choose Tools | Templates.
+    public void pay(int amount,  Bidder sender, Seller reciever) {
+        if (sender.balance>=amount){
+            sender.setBalance(sender.getBalance()-amount);
+            reciever.setBalance(reciever.getBalance()+amount);
+            System.out.println("you have payed"+amount+"using American Express");
+        }
+        else{
+            System.out.println("amount not enough");
+        }
     }
     
 }
