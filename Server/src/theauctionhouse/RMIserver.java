@@ -11,9 +11,11 @@ public class RMIserver {
     public static void main(String[] args) throws RemoteException {
 
 
-        Seller s = new Seller(200);
+        Seller s = new Seller(1350);
+        Seller plsWork = new Seller(1,"hassan","pass","mail",32,"Male","hamada street",011232321,50);
         DB database = new DB();
-        database.insertSeller(s);
+        database.insertSeller(plsWork);
+
 
         try {
 
@@ -31,7 +33,7 @@ public class RMIserver {
             System.out.println(" Moderator server is ready!!");
 
             //seller
-            SellerInterface Sellerinterface = new Seller();
+            SellerInterface Sellerinterface = plsWork;
 
             reg.bind("Sellerinterface", Sellerinterface);
             System.out.println("Seller server is ready!!");

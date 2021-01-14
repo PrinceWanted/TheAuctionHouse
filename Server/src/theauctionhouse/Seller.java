@@ -16,10 +16,10 @@ public class Seller extends User implements SellerInterface {
 
     }
 
-    public Seller(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, float balance, ArrayList<Product> postedProducts) throws RemoteException {
+    public Seller(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, float balance) throws RemoteException {
         super(uID, uname, upass, umail, uage, gender, uaddress, unumber);
         this.balance = balance;
-        this.postedProducts = postedProducts;
+       postedProducts = new ArrayList<Product>();
     }
 
     public float getBalance() {
@@ -30,13 +30,31 @@ public class Seller extends User implements SellerInterface {
         this.balance = balance;
     }
 
+    public ArrayList<Product> getPostedProducts() {
+        return postedProducts;
+    }
+
+    public void setPostedProducts(ArrayList<Product> postedProducts) {
+        this.postedProducts = postedProducts;
+    }
+
     @Override
     public SellerDTO getDTO() throws RemoteException {
-        return null;
+        SellerDTO a = new SellerDTO(super.getuID(), super.getUname(), super.getUpass(), super.getUmail() ,super.getUage() ,super.getGender() ,super.getUaddress() ,super.getUnumber(),getBalance(),postedProducts);
+        return a;
     }
 
     @Override
     public void returnDTO(SellerDTO d) throws RemoteException {
-
+        super.setuID(d.getID());
+        super.setUname(d.getName());
+        super.setUpass(d.getPass());
+        super.setUmail(d.getMail());
+        super.setUage(d.getAge());
+        super.setGender(d.getGender());
+        super.setUaddress(d.getAddress());
+        super.setUnumber(d.getNumber());
+        setBalance(d.getBalance());
+        setPostedProducts(d.getPostedProducts());
     }
 }
