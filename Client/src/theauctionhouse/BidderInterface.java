@@ -3,7 +3,7 @@ package theauctionhouse;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface BidderInterface extends Remote {
+public interface BidderInterface extends Remote,UserInterface {
 
     public void bid(int bidprice, BidSession bs) throws RemoteException;
 

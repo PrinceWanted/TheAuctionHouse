@@ -8,6 +8,7 @@ public class Seller extends User implements SellerInterface, Serializable {
 
     private float balance;
     private ArrayList<Product> postedProducts;
+    private ArrayList<Seller> SellerList;
 
     public Seller(int i, String hassan, String pass, String mail, int i1, String male, String hamada_street, int i2, int i3) throws RemoteException {
     }
@@ -17,15 +18,26 @@ public class Seller extends User implements SellerInterface, Serializable {
 
     }
 
-    public Seller(float balance, ArrayList<Product> postedProducts) throws RemoteException {
+
+    public Seller(float balance, ArrayList<Product> postedProducts, ArrayList<Seller> sellerList) throws RemoteException {
         this.balance = balance;
         this.postedProducts = postedProducts;
+        SellerList = sellerList;
     }
 
-    public Seller(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type, float balance, ArrayList<Product> postedProducts) throws RemoteException {
+    public Seller(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type, float balance, ArrayList<Product> postedProducts, ArrayList<Seller> sellerList) throws RemoteException {
         super(uID, uname, upass, umail, uage, gender, uaddress, unumber, type);
         this.balance = balance;
         this.postedProducts = postedProducts;
+        SellerList = sellerList;
+    }
+
+    public ArrayList<Seller> getSellerList() {
+        return SellerList;
+    }
+
+    public void setSellerList(ArrayList<Seller> sellerList) {
+        SellerList = sellerList;
     }
 
     public float getBalance() {
@@ -46,7 +58,7 @@ public class Seller extends User implements SellerInterface, Serializable {
 
     @Override
     public SellerDTO getDTO() throws RemoteException {
-        SellerDTO a = new SellerDTO(super.getuID(), super.getUname(), super.getUpass(), super.getUmail() ,super.getUage() ,super.getGender() ,super.getUaddress() ,super.getUnumber(),getBalance(),postedProducts);
+        SellerDTO a = new SellerDTO(super.getuID(), super.getUname(), super.getUpass(), super.getUmail(), super.getUage(), super.getGender(), super.getUaddress(), super.getUnumber(), getBalance(), postedProducts);
         return a;
     }
 
@@ -66,9 +78,22 @@ public class Seller extends User implements SellerInterface, Serializable {
 
     @Override
     public void postProduct(Product r) throws RemoteException {
-            Moderator.getInstance().getPendingProducts().add(r);
-            this.getPostedProducts().add(r);
+        Moderator.getInstance().getPendingProducts().add(r);
+        this.getPostedProducts().add(r);
     }
 
 
+    @Override
+    public Seller login(String name, String pass) throws RemoteException {
+
+        for (Seller seller : this.getSellerList()) {
+            if (seller.getUname() == name && seller.getUpass() == pass)
+            return seller;
+            else {
+                System.err.println("Wrong Credentials.");
+                return null;}
+        }
+        System.err.println("Error logging in.");
+        return null;
+    }
 }

@@ -3,7 +3,7 @@ package theauctionhouse;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface SellerInterface extends Remote {
+public interface SellerInterface extends Remote,UserInterface {
 
 
     public SellerDTO getDTO() throws RemoteException;

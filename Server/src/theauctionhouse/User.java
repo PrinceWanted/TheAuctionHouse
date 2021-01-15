@@ -118,12 +118,7 @@ public class User extends UnicastRemoteObject implements Serializable {
         System.out.println("Address"+Uaddress);
         System.out.println("Phone Number: "+Unumber);
     }
-    public boolean login (String name,String pass){
-        if (name == this.Uname&&pass==this.Upass){
-            return true;
-        }
-        else return false;
-    }
+
 
 
 }

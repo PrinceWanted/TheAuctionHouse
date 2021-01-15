@@ -5,18 +5,56 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Scanner;
 
 public class RMIClient {
 
     public static void main(String[] args) throws RemoteException {
 
         try {
+            String username, password, type;
+
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Please enter your Credentials");
+
+            System.out.print("User type:");
+            type = sc.nextLine();
+
+            System.out.print("Username:");
+            username = sc.nextLine();
+
+            System.out.print("Password:");
+            password = sc.nextLine();
+
+
+            switch (type) {
+
+                case "Bidder":
+
+
+                    Registry registry = LocateRegistry.getRegistry(1099);
+                    BidderInterface BidInterface = (BidderInterface) registry.lookup("Binterface");
+
+                    BidInterface.login()
+                    Bidder B =new Bidder();
+                    B.login(username,password);
+
+                    BidSession b = new BidSession();
+                    BidderInterface BidInterface = (BidderInterface) registry.lookup("Binterface");
+
+
+                    BidInterface.regToRoom(b);
 
 
 
-            Registry registry = LocateRegistry.getRegistry(1099);
-            //BidderInterface BidInterface = (BidderInterface)registry.lookup("Binterface");
-            SellerInterface seller = (SellerInterface) registry.lookup("Sellerinterface");
+                case "Seller":
+                case "Moderator":
+
+            }
+
+
+
+          /*  SellerInterface seller = (SellerInterface) registry.lookup("Sellerinterface");
             SellerDTO sellertest = seller.getDTO();
             System.out.println(sellertest.getName());
             System.out.println(sellertest.getPass());
@@ -35,13 +73,7 @@ public class RMIClient {
             System.out.println(dsd.getPostedProducts().get(0).getName());
 
 
-
-            BidSession b=new BidSession();
-            BidderInterface BidInterface = (BidderInterface)registry.lookup("Binterface");
-
-
-               BidInterface.regToRoom(b);
-
+*/
 
 
         } catch (RemoteException | NotBoundException e) {

@@ -13,12 +13,13 @@ public class User extends UnicastRemoteObject implements Serializable {
     private String Gender;
     private String Uaddress;
     private int Unumber;
+    private String accType;
 
 //Contructors
     public User() throws RemoteException {
     }
 
-    public User(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber)  throws RemoteException{
+    public User(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type)  throws RemoteException{
         this.uID = uID;
         Uname = uname;
         Upass = upass;
@@ -27,6 +28,7 @@ public class User extends UnicastRemoteObject implements Serializable {
         Gender = gender;
         Uaddress = uaddress;
         Unumber = unumber;
+        accType = type;
     }
 
 //Setters and getters
@@ -93,25 +95,10 @@ public class User extends UnicastRemoteObject implements Serializable {
     public void setUnumber(int unumber) {
         Unumber = unumber;
     }
-    //methods
 
-    public void createAccount(String name,String pass, String mail) throws RemoteException{
-        User u = new User(0,name,pass,mail,0,"","",0);
-    }
-    public void editAccount(String name,String pass, String mail){
-        Uname=name;
-        Upass=pass;
-        Umail=mail;
-    }
-    public void viewAccount (){
+    public String getAccType() { return accType; }
 
-    }
-    public boolean login (String name,String pass){
-        if (name == this.Uname&&pass==this.Upass){
-            return true;
-        }
-        else return false;
-    }
+    public void setAccType(String accType) { this.accType = accType;    }
 
 
 }

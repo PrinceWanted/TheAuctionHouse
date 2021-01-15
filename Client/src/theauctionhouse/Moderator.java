@@ -6,12 +6,17 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 
-public class Moderator extends User implements Serializable {
+public class Moderator extends User implements  Serializable {
     private static Moderator instance;
-    ArrayList<String> pendingProducts = new ArrayList<String>();
+    private ArrayList<Product> pendingProducts = new ArrayList<Product>();
+
 
     private Moderator() throws RemoteException {
+        pendingProducts = new ArrayList<Product>();
+    }
 
+    public ArrayList<Product> getPendingProducts() {
+        return pendingProducts;
     }
 
     public static Moderator getInstance() throws RemoteException {
