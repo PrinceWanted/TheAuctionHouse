@@ -104,7 +104,7 @@ public class Seller extends User implements SellerInterface, Serializable {
 
             if (seller.getUname().equals(name)  && seller.getUpass().equals(pass) ) {
                 System.out.println("Logged in!");
-
+                System.out.println(seller.getUname());
                 return seller;
 
             }

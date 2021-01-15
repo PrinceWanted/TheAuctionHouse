@@ -64,7 +64,7 @@ public class Bidder extends User implements BidderInterface, Serializable {
     public Bidder login(String name, String pass) throws RemoteException {
 
         DB db = new DB();
-        ArrayList<Bidder> Bidrlst = new ArrayList<Bidder>();
+        ArrayList<Bidder> Bidrlst = db.retrieveAllBidders();
 
         for (Bidder b : Bidrlst) {
             if (b.getUname() == name && b.getUpass() == pass) {

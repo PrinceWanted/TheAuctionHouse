@@ -12,7 +12,7 @@ public class RMIserver {
 
         DB database = new DB();
 
-        
+
         try {
 
             //Bidder

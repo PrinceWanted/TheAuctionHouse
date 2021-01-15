@@ -32,31 +32,32 @@ public class RMIClient {
             SellerInterface s = (SellerInterface) registry.lookup("Sellerinterface");
 
 
-           //Seller B= new Seller();
-         //   B= s.login(username,password);
+/*
+            // Seller B= new Seller();
+            //   B= s.login(username,password);
 
-        //    System.out.println(B.getUname());
+            //    System.out.println(B.getUname());
 
-            System.out.println(s.login(username,password).getUname());
-
+            System.out.println(s.login(username, password).getUname());
+*/
             switch (type) {
 
                 case "Bidder":
 
 
-                     registry = LocateRegistry.getRegistry(1099);
+                    //registry = LocateRegistry.getRegistry(1099);
                     BidderInterface BidInterface = (BidderInterface) registry.lookup("Binterface");
 
 
-                    /*
+
                    Bidder B = new Bidder();
 
                    B =  BidInterface.login("ahmed","pass");
 
-                    System.out.println(B.getUname());
-                   // BidInterface = BidInterface.login(username,password);
 
-                    //BidInterface =B;
+                 Bidder bidder = BidInterface.login(username,password);
+
+                    System.out.println(bidder.getUname());
 
 /*
                     BidSession b = new BidSession();
@@ -94,8 +95,6 @@ public class RMIClient {
             System.out.println(dsd.getName());
             System.out.println(dsd.getPostedProducts().get(0).getName());
 */
-
-
 
 
         } catch (Exception e) {
