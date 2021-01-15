@@ -35,31 +35,16 @@ public class RMIClient {
                     Registry registry = LocateRegistry.getRegistry(1099);
                     BidderInterface BidInterface = (BidderInterface) registry.lookup("Binterface");
 
-                    Bidder b = BidInterface.login(username, password);
+                    BidInterface.login()
+                    Bidder B =new Bidder();
+                    B.login(username,password);
 
-                    System.out.println("HERERERER" +b.getUname());
-
-                    System.out.println("Press 1 2 3 :");
-                    int choice =sc.nextInt();
-
-                    switch (choice){
-                        case 1: BidInterface.viewProductList();
-
-                        case 2:// BidInterface.bid();
-                        case 3:
-
-                    }
+                    BidSession b = new BidSession();
+                    BidderInterface BidInterface = (BidderInterface) registry.lookup("Binterface");
 
 
+                    BidInterface.regToRoom(b);
 
-
-
-
-                    // BidSession bs = new BidSession();
-                    //   BidderInterface BidInterface = (BidderInterface) registry.lookup("Binterface");
-
-
-                    // BidInterface.regToRoom(bs);
 
 
                 case "Seller":
