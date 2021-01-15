@@ -11,4 +11,7 @@ public interface SellerInterface extends Remote,UserInterface {
     public void returnDTO(SellerDTO d) throws RemoteException;
 
     public void postProduct(Product r) throws RemoteException;
+
+    @Override
+    public Seller login (String name,String pass) throws RemoteException;
 }
