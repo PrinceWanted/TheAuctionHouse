@@ -4,6 +4,7 @@ package theauctionhouse;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class Bidder extends User implements BidderInterface, Serializable {
     public int balance;
@@ -47,7 +48,12 @@ public class Bidder extends User implements BidderInterface, Serializable {
     @Override
     public void viewProductList() throws RemoteException {
 
-        //insert database function?
+        //insert database function? -on it!
+        DB db = new DB();
+        ArrayList<Product> products = db.getALlProducts();
+        for (int i = 0; i < products.size(); i++) {
+            System.out.println(products.get(i).toString()); //print for now cause pre-GUI and testing purposes
+        }
     }
 
 

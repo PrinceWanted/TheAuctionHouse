@@ -52,6 +52,12 @@ public class Product implements Serializable {
         this.startingPrice = startingPrice;
     }
 
+    @Override
+    public String toString(){
+        String productInfo = "ID: " + this.getID()+"\nName: " + this.getName() + "\nDescription: " + this.getDescription() +"\nStarting price: "+ this.getStartingPrice()+ "\n";
+        return productInfo;
+    }
+
 /*    public User getOwner() {
         return owner;
     }

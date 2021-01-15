@@ -124,6 +124,17 @@ public class DB {
         System.out.println("BidSession inserted");
     }
 
+    public ArrayList<Product> getALlProducts(){
+        collection = database.getCollection("Product");
+        ArrayList<Product> products = new ArrayList();
+        ArrayList<Document> doc = collection.find().into(new ArrayList<Document>()); //returns all rows of Product Table
+        for(int i = 0; i< doc.size(); i++){
+            products.add(gson.fromJson(doc.get(i).toJson(), Product.class));
+        }
+        return products;
+    }
+    //-----end of Mekawy's DB stuff-----//
+
     public void readUser(String type, String name) {
         collection = database.getCollection(type);
         Document Result = (Document) collection.find(Filters.all("Uname", name));
