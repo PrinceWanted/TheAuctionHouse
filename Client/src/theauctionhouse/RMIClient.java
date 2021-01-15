@@ -11,6 +11,7 @@ public class RMIClient {
 
     public static void main(String[] args) throws RemoteException {
 
+
         try {
             String username, password, type;
 
@@ -31,20 +32,23 @@ public class RMIClient {
             SellerInterface s = (SellerInterface) registry.lookup("Sellerinterface");
 
 
-           Seller B= new Seller();
-            B= s.login(username,password);
+           //Seller B= new Seller();
+         //   B= s.login(username,password);
 
-            System.out.println(B.getUname());
+        //    System.out.println(B.getUname());
 
+            System.out.println(s.login(username,password).getUname());
 
             switch (type) {
 
                 case "Bidder":
 
-/*
-                    Registry registry = LocateRegistry.getRegistry(1099);
+
+                     registry = LocateRegistry.getRegistry(1099);
                     BidderInterface BidInterface = (BidderInterface) registry.lookup("Binterface");
 
+
+                    /*
                    Bidder B = new Bidder();
 
                    B =  BidInterface.login("ahmed","pass");
@@ -71,8 +75,8 @@ public class RMIClient {
             }
 
 
-
-          /*  SellerInterface seller = (SellerInterface) registry.lookup("Sellerinterface");
+/*
+            SellerInterface seller = (SellerInterface) registry.lookup("Sellerinterface");
             SellerDTO sellertest = seller.getDTO();
             System.out.println(sellertest.getName());
             System.out.println(sellertest.getPass());
@@ -83,15 +87,15 @@ public class RMIClient {
 
 
             sellertest.setName("Another Name");
-           // sellertest.getPostedProducts().add(new Product(1,"some product","This is a good product",5000));
+            sellertest.getPostedProducts().add(new Product(1,"some product","This is a good product",5000));
             seller.returnDTO(sellertest);
             System.out.println("Testing the data from server after updating it from client \n");
             SellerDTO dsd = seller.getDTO();
             System.out.println(dsd.getName());
             System.out.println(dsd.getPostedProducts().get(0).getName());
-
-
 */
+
+
 
 
         } catch (Exception e) {

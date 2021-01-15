@@ -2,6 +2,8 @@ package theauctionhouse;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.RMIClientSocketFactory;
+import java.rmi.server.RMIServerSocketFactory;
 import java.util.ArrayList;
 
 public class Seller extends User implements SellerInterface, Serializable {
@@ -10,6 +12,8 @@ public class Seller extends User implements SellerInterface, Serializable {
     private ArrayList<Product> postedProducts;
     private ArrayList<Seller> SellerList;
 
+    public Seller() throws RemoteException {
+    }
     public Seller(int i, String hassan, String pass, String mail, int i1, String male, String hamada_street, int i2, int i3) throws RemoteException {
     }
 
@@ -18,6 +22,13 @@ public class Seller extends User implements SellerInterface, Serializable {
 
     }
 
+    public Seller(int port) throws RemoteException {
+        super(port);
+    }
+
+    public Seller(int port, RMIClientSocketFactory csf, RMIServerSocketFactory ssf) throws RemoteException {
+        super(port, csf, ssf);
+    }
 
     public Seller(float balance, ArrayList<Product> postedProducts, ArrayList<Seller> sellerList) throws RemoteException {
         this.balance = balance;
@@ -90,10 +101,12 @@ public class Seller extends User implements SellerInterface, Serializable {
         DB db= new DB();
         ArrayList<Seller> allseller= db.retrieveAllSeller();
         for (Seller seller : allseller) {
-            System.out.println(seller.getUname());
+
             if (seller.getUname().equals(name)  && seller.getUpass().equals(pass) ) {
                 System.out.println("Logged in!");
+
                 return seller;
+
             }
             else {
                 System.err.println("Wrong Credentials.");

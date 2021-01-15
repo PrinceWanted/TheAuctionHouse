@@ -10,13 +10,9 @@ public class RMIserver {
 
     public static void main(String[] args) throws RemoteException {
 
-
-        Seller s = new Seller(1350);
-        Seller plsWork = new Seller(1,"hassan","pass","mail",32,"Male","hamada street",011232321,50);
         DB database = new DB();
-        database.insertSeller(plsWork);
 
-
+        
         try {
 
             //Bidder
@@ -25,7 +21,6 @@ public class RMIserver {
             reg.bind("Binterface", Binterface);
             System.out.println("Bidder server is ready!!");
 
-
             //Moderator
             ModeratorInterface modIterface = Moderator.getInstance();
 
@@ -33,8 +28,7 @@ public class RMIserver {
             System.out.println(" Moderator server is ready!!");
 
             //seller
-            SellerInterface Sellerinterface = plsWork;
-
+            SellerInterface Sellerinterface = new Seller();
             reg.bind("Sellerinterface", Sellerinterface);
             System.out.println("Seller server is ready!!");
 
