@@ -24,7 +24,6 @@ public class Bidder extends User implements BidderInterface, Serializable {
     }
 
 
-
     public int getBalance() {
         return balance;
     }
@@ -64,17 +63,16 @@ public class Bidder extends User implements BidderInterface, Serializable {
     @Override
     public Bidder login(String name, String pass) throws RemoteException {
 
-        DB db= new DB();
-
-        ArrayList<Bidder> Bidrlst=new ArrayList<Bidder>();
+        DB db = new DB();
+        ArrayList<Bidder> Bidrlst = new ArrayList<Bidder>();
 
         for (Bidder b : Bidrlst) {
-            if (b.getUname() == name && b.getUpass() == pass){
+            if (b.getUname() == name && b.getUpass() == pass) {
                 System.out.println("Logged in!");
-                return b;}
-            else {
+                return b;
+            } else {
                 System.err.println("Wrong Credentials");
-                return null;}
+            }
         }
         System.err.println("Error logging in");
         return null;
