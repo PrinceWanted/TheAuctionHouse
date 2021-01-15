@@ -33,6 +33,7 @@ public class Seller extends User implements SellerInterface, Serializable {
     }
 
     public ArrayList<Seller> getSellerList() {
+
         return SellerList;
     }
 
@@ -86,14 +87,18 @@ public class Seller extends User implements SellerInterface, Serializable {
     @Override
     public Seller login(String name, String pass) throws RemoteException {
 
-        for (Seller seller : this.getSellerList()) {
-            if (seller.getUname() == name && seller.getUpass() == pass)
-            return seller;
+        DB db= new DB();
+        ArrayList<Seller> allseller= db.retrieveAllSeller();
+        for (Seller seller : allseller) {
+            System.out.println(seller.getUname());
+            if (seller.getUname().equals(name)  && seller.getUpass().equals(pass) ) {
+                System.out.println("Logged in!");
+                return seller;
+            }
             else {
                 System.err.println("Wrong Credentials.");
-                return null;}
+            }
         }
-        System.err.println("Error logging in.");
-        return null;
+  return null;
     }
 }

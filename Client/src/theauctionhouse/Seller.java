@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class Seller extends User implements  Serializable {
+public class Seller extends User implements Serializable {
 
     private float balance;
     private ArrayList<Product> postedProducts;
@@ -18,6 +18,8 @@ public class Seller extends User implements  Serializable {
 
     }
 
+    public Seller() throws RemoteException {
+    }
 
     public Seller(float balance, ArrayList<Product> postedProducts, ArrayList<Seller> sellerList) throws RemoteException {
         this.balance = balance;

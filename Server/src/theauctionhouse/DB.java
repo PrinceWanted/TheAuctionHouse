@@ -182,5 +182,29 @@ public class DB {
             System.out.println("USer Error");
         }
     }
+
+
+    public ArrayList<Bidder> retrieveAllBidders (){
+        collection = database.getCollection("Bidder");
+        ArrayList<Bidder> results = new ArrayList<>();
+        ArrayList<Document> documents = collection.find().into(new ArrayList<>());
+        System.out.println(documents);
+        for (Document document : documents) {
+            results.add(gson.fromJson(document.toJson(), Bidder.class));
+        }
+        return results;
+    }
+
+    public ArrayList<Seller> retrieveAllSeller (){
+        collection = database.getCollection("Seller");
+        ArrayList<Seller> results = new ArrayList<>();
+        ArrayList<Document> documents = collection.find().into(new ArrayList<>());
+        System.out.println(documents);
+        for (Document document : documents) {
+            results.add(gson.fromJson(document.toJson(), Seller.class));
+        }
+        return results;
+    }
+
 }
 
