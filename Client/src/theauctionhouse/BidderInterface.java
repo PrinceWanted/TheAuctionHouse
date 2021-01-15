@@ -11,5 +11,8 @@ public interface BidderInterface extends Remote,UserInterface {
 
     public void viewProductList() throws RemoteException;
 
+    @Override
+    public Bidder login (String name,String pass) throws RemoteException;
+
 
 }

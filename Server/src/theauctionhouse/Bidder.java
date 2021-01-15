@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class Bidder extends User implements BidderInterface, Serializable {
-    private ArrayList<Bidder> BidderList;
+
     private int balance;
 
 
@@ -18,24 +18,12 @@ public class Bidder extends User implements BidderInterface, Serializable {
         this.balance = balance;
     }
 
-    public Bidder(ArrayList<Bidder> bidderList, int balance) throws RemoteException {
-        BidderList = bidderList;
-        this.balance = balance;
-    }
-
-    public Bidder(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type, ArrayList<Bidder> bidderList, int balance) throws RemoteException {
+    public Bidder(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type, int balance) throws RemoteException {
         super(uID, uname, upass, umail, uage, gender, uaddress, unumber, type);
-        BidderList = bidderList;
         this.balance = balance;
     }
 
-    public ArrayList<Bidder> getBidderList() {
-        return BidderList;
-    }
 
-    public void setBidderList(ArrayList<Bidder> bidderList) {
-        BidderList = bidderList;
-    }
 
     public int getBalance() {
         return balance;
@@ -75,9 +63,15 @@ public class Bidder extends User implements BidderInterface, Serializable {
 
     @Override
     public Bidder login(String name, String pass) throws RemoteException {
-        for (Bidder b : this.getBidderList()) {
-            if (b.getUname() == name && b.getUpass() == pass)
-                return b;
+
+        DB db= new DB();
+
+        ArrayList<Bidder> Bidrlst=new ArrayList<Bidder>();
+
+        for (Bidder b : Bidrlst) {
+            if (b.getUname() == name && b.getUpass() == pass){
+                System.out.println("Logged in!");
+                return b;}
             else {
                 System.err.println("Wrong Credentials");
                 return null;}

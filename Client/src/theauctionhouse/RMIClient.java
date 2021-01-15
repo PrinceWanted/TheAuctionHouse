@@ -17,6 +17,7 @@ public class RMIClient {
             Scanner sc = new Scanner(System.in);
             System.out.println("Please enter your Credentials");
 
+
             System.out.print("User type:");
             type = sc.nextLine();
 
@@ -26,28 +27,45 @@ public class RMIClient {
             System.out.print("Password:");
             password = sc.nextLine();
 
+            Registry registry = LocateRegistry.getRegistry(1099);
+            SellerInterface s = (SellerInterface) registry.lookup("Sellerinterface");
+
+
+           Seller B= new Seller();
+            B= s.login(username,password);
+
+            System.out.println(B.getUname());
+
 
             switch (type) {
 
                 case "Bidder":
 
-
+/*
                     Registry registry = LocateRegistry.getRegistry(1099);
                     BidderInterface BidInterface = (BidderInterface) registry.lookup("Binterface");
 
-                    BidInterface.login()
-                    Bidder B =new Bidder();
-                    B.login(username,password);
+                   Bidder B = new Bidder();
 
+                   B =  BidInterface.login("ahmed","pass");
+
+                    System.out.println(B.getUname());
+                   // BidInterface = BidInterface.login(username,password);
+
+                    //BidInterface =B;
+
+/*
                     BidSession b = new BidSession();
                     BidderInterface BidInterface = (BidderInterface) registry.lookup("Binterface");
 
 
                     BidInterface.regToRoom(b);
 
-
+*/
 
                 case "Seller":
+
+
                 case "Moderator":
 
             }
@@ -76,8 +94,9 @@ public class RMIClient {
 */
 
 
-        } catch (RemoteException | NotBoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(e);
         }
 
 
