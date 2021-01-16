@@ -5,7 +5,7 @@ package theauctionhouse;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BiddingRoom implements Serializable {
+public class    BiddingRoom implements Serializable {
     private int RoomNumber;
     private int BidderCount;
     private Product BiddingProd;
