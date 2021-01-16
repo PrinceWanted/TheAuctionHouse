@@ -17,8 +17,7 @@ public class RMIClient {
 
             Scanner sc = new Scanner(System.in);
             System.out.println("Please enter your Credentials");
-
-
+/*
             System.out.print("User type:");
             type = sc.nextLine();
 
@@ -27,19 +26,19 @@ public class RMIClient {
 
             System.out.print("Password:");
             password = sc.nextLine();
-
+*/
             Registry registry = LocateRegistry.getRegistry(1099);
-            SellerInterface s = (SellerInterface) registry.lookup("Sellerinterface");
+          //  SellerInterface s = (SellerInterface) registry.lookup("Sellerinterface");
 
 
-/*
+
             // Seller B= new Seller();
             //   B= s.login(username,password);
 
             //    System.out.println(B.getUname());
 
-            System.out.println(s.login(username, password).getUname());
-*/
+
+/*
             switch (type) {
 
                 case "Bidder":
@@ -59,14 +58,14 @@ public class RMIClient {
 
                     System.out.println(bidder.getUname());
 
-/*
+
                     BidSession b = new BidSession();
                     BidderInterface BidInterface = (BidderInterface) registry.lookup("Binterface");
 
 
                     BidInterface.regToRoom(b);
 
-*/
+
 
                 case "Seller":
 
@@ -75,16 +74,14 @@ public class RMIClient {
 
             }
 
+*/
 
-/*
-            SellerInterface seller = (SellerInterface) registry.lookup("Sellerinterface");
+            SellerInterface seller = (SellerInterface) registry.lookup("s");
             SellerDTO sellertest = seller.getDTO();
-            System.out.println(sellertest.getName());
-            System.out.println(sellertest.getPass());
-            System.out.println(sellertest.getAge());
-            System.out.println(sellertest.getGender() +"\n");
 
-            seller.postProduct(new Product(1,"some product","This is a good product",5000));
+
+
+           // seller.postProduct(new Product(1,"some product","This is a good product",5000));
 
 
             sellertest.setName("Another Name");
@@ -94,7 +91,7 @@ public class RMIClient {
             SellerDTO dsd = seller.getDTO();
             System.out.println(dsd.getName());
             System.out.println(dsd.getPostedProducts().get(0).getName());
-*/
+
 
 
         } catch (Exception e) {

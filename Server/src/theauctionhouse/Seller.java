@@ -22,6 +22,12 @@ public class Seller extends User implements SellerInterface, Serializable {
 
     }
 
+    public Seller(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type, float balance) throws RemoteException {
+        super(uID, uname, upass, umail, uage, gender, uaddress, unumber, type);
+        this.balance = balance;
+        postedProducts = new ArrayList<Product>();
+    }
+
     public Seller(int port) throws RemoteException {
         super(port);
     }
