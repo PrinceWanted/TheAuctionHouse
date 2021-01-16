@@ -35,7 +35,6 @@ public class Seller extends User implements Serializable {
     }
 
 
-
     public float getBalance() {
         return balance;
     }

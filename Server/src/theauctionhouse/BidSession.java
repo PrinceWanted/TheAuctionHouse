@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class BidSession implements Serializable {
 
 
-    private ArrayList<Bidder> BiddersList ;
+    private ArrayList<Bidder> BiddersList;
     private BiddingRoom Room;
     private Boolean IsAvailable;
 

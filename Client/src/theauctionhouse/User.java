@@ -1,12 +1,13 @@
 package theauctionhouse;
 
 import java.io.Serializable;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
 import java.rmi.server.UnicastRemoteObject;
 
-public class User extends UnicastRemoteObject implements Serializable {
+public class User extends UnicastRemoteObject implements Serializable, Remote {
     private int uID;
     private String Uname;
     private String Upass;
@@ -17,7 +18,7 @@ public class User extends UnicastRemoteObject implements Serializable {
     private int Unumber;
     private String accType;
 
-//Contructors
+    //Contractors
     public User() throws RemoteException {
     }
 
@@ -29,7 +30,7 @@ public class User extends UnicastRemoteObject implements Serializable {
         super(port, csf, ssf);
     }
 
-    public User(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type)  throws RemoteException{
+    public User(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type) throws RemoteException {
         this.uID = uID;
         Uname = uname;
         Upass = upass;
@@ -106,11 +107,12 @@ public class User extends UnicastRemoteObject implements Serializable {
         Unumber = unumber;
     }
 
-    public String getAccType() { return accType; }
+    public String getAccType() {
+        return accType;
+    }
 
-    public void setAccType(String accType) { this.accType = accType;    }
-
-
-
+    public void setAccType(String accType) {
+        this.accType = accType;
+    }
 
 }

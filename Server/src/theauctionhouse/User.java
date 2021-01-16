@@ -17,7 +17,7 @@ public class User extends UnicastRemoteObject implements Serializable {
     private int Unumber;
     private String accType;
 
-//Contructors
+    //Contructors
     public User() throws RemoteException {
     }
 
@@ -29,7 +29,7 @@ public class User extends UnicastRemoteObject implements Serializable {
         super(port, csf, ssf);
     }
 
-    public User(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type)  throws RemoteException{
+    public User(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type) throws RemoteException {
         this.uID = uID;
         Uname = uname;
         Upass = upass;
@@ -106,29 +106,34 @@ public class User extends UnicastRemoteObject implements Serializable {
         Unumber = unumber;
     }
 
-    public String getAccType() { return accType; }
+    public String getAccType() {
+        return accType;
+    }
 
-    public void setAccType(String accType) { this.accType = accType;    }
+    public void setAccType(String accType) {
+        this.accType = accType;
+    }
 
     //methods
 
-    public void createAccount(String name,String pass, String mail) throws RemoteException{
-        User u = new User(0,name,pass,mail,0,"","",0,"");
-    }
-    public void editAccount(String name,String pass, String mail){
-        Uname=name;
-        Upass=pass;
-        Umail=mail;
-    }
-    public void viewAccount (){
-        System.out.println("UserName: "+Uname);
-        System.out.println("Email: "+Umail);
-        System.out.println("Age: "+Uage);
-        System.out.println("Gender: "+Gender);
-        System.out.println("Address"+Uaddress);
-        System.out.println("Phone Number: "+Unumber);
+    public void createAccount(String name, String pass, String mail) throws RemoteException {
+        User u = new User(0, name, pass, mail, 0, "", "", 0, "");
     }
 
+    public void editAccount(String name, String pass, String mail) {
+        Uname = name;
+        Upass = pass;
+        Umail = mail;
+    }
+
+    public void viewAccount() {
+        System.out.println("UserName: " + Uname);
+        System.out.println("Email: " + Umail);
+        System.out.println("Age: " + Uage);
+        System.out.println("Gender: " + Gender);
+        System.out.println("Address" + Uaddress);
+        System.out.println("Phone Number: " + Unumber);
+    }
 
 
 }

@@ -1,9 +1,14 @@
-package theauctionhouse;
+package theauctionhouse.Controller;
+
+import theauctionhouse.*;
+
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface BidderInterface extends Remote,UserInterface {
+public interface BidderInterface extends Remote {
+
+    public String getName() throws RemoteException;
 
     public void bid(int bidprice, BidSession bs) throws RemoteException;
 
@@ -11,8 +16,6 @@ public interface BidderInterface extends Remote,UserInterface {
 
     public void viewProductList() throws RemoteException;
 
-    @Override
-    public Bidder login (String name,String pass) throws RemoteException;
-
+    public int login(String name, String pass) throws RemoteException;
 
 }

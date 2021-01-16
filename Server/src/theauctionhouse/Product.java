@@ -9,8 +9,7 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private int startingPrice;
-    // private User owner; owner is causing me trouble because i need to get user to client to know what that is
-    // doing so will make me end up copying the entire project to the client
+
 
     public Product(int ID, String name, String description, int startingPrice/*, User owner*/) {
         this.ID = ID;
@@ -53,16 +52,9 @@ public class Product implements Serializable {
     }
 
     @Override
-    public String toString(){
-        String productInfo = "ID: " + this.getID()+"\nName: " + this.getName() + "\nDescription: " + this.getDescription() +"\nStarting price: "+ this.getStartingPrice()+ "\n";
+    public String toString() {
+        String productInfo = "ID: " + this.getID() + "\nName: " + this.getName() + "\nDescription: " + this.getDescription() + "\nStarting price: " + this.getStartingPrice() + "\n";
         return productInfo;
     }
 
-/*    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }*/
 }

@@ -1,6 +1,8 @@
 
 package theauctionhouse;
 
+import theauctionhouse.Controller.ModeratorInterface;
+
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -26,6 +28,10 @@ public class Moderator extends User implements ModeratorInterface, Serializable 
         return instance;
     }
 
+    @Override
+    public String getName() throws RemoteException {
+        return this.getUname();
+    }
 
     @Override
     public void RemoveProduct(BidSession bs) throws RemoteException {
@@ -37,12 +43,12 @@ public class Moderator extends User implements ModeratorInterface, Serializable 
     }
 
     @Override
-    public Moderator login(String name, String pass) throws RemoteException {
-        if (name == this.getUname() && pass == this.getUpass()) {
+    public int login(String name, String pass) throws RemoteException {
+        if (name.equals(this.getUname()) && pass.equals(this.getUpass())) {
 
-            return this;
+            return this.getuID();
         } else
             System.err.println("Wrong Credentials");
-        return null;
+        return 0;
     }
 }

@@ -1,5 +1,7 @@
 package theauctionhouse;
 
+import theauctionhouse.Controller.SellerInterface;
+
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.RMIClientSocketFactory;
@@ -7,10 +9,9 @@ import java.rmi.server.RMIServerSocketFactory;
 import java.util.ArrayList;
 
 public class Seller extends User implements SellerInterface, Serializable {
-
+    DB db = new DB();
     private float balance;
     private ArrayList<Product> postedProducts;
-
 
 
     public Seller() throws RemoteException {
@@ -94,21 +95,28 @@ public class Seller extends User implements SellerInterface, Serializable {
     }
 
     @Override
-    public Seller login(String name, String pass) throws RemoteException {
+    public int login(String name, String pass) throws RemoteException {
 
-        DB db = new DB();
+
         ArrayList<Seller> allseller = db.retrieveAllSeller();
+
         for (Seller seller : allseller) {
 
             if (seller.getUname().equals(name) && seller.getUpass().equals(pass)) {
                 System.out.println("Logged in!");
                 System.out.println(seller.getUname());
-                return seller;
-
-            } else {
+                return seller.getuID();
+            } else
                 System.err.println("Wrong Credentials.");
-            }
         }
-        return null;
+
+        return 0;
     }
+
+    @Override
+    public ArrayList<Seller> getAllsellers() throws RemoteException {
+        ArrayList<Seller> allseller = db.retrieveAllSeller();
+        return allseller;
+    }
+
 }

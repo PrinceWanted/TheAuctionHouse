@@ -1,15 +1,15 @@
 
 package theauctionhouse;
 
+import theauctionhouse.Controller.BidderInterface;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class Bidder extends User implements BidderInterface, Serializable {
-
+    DB db = new DB();
     private int balance;
-
 
     public Bidder() throws RemoteException {
     }
@@ -23,7 +23,6 @@ public class Bidder extends User implements BidderInterface, Serializable {
         this.balance = balance;
     }
 
-
     public int getBalance() {
         return balance;
     }
@@ -32,6 +31,10 @@ public class Bidder extends User implements BidderInterface, Serializable {
         this.balance = balance;
     }
 
+    @Override
+    public String getName() throws RemoteException {
+        return this.getUname();
+    }
 
     @Override
     public void bid(int bidprice, BidSession bs) throws RemoteException {
@@ -51,8 +54,6 @@ public class Bidder extends User implements BidderInterface, Serializable {
     @Override
     public void viewProductList() throws RemoteException {
 
-        //insert database function? -on it!
-        DB db = new DB();
         ArrayList<Product> products = db.getALlProducts();
         for (int i = 0; i < products.size(); i++) {
             System.out.println(products.get(i).toString()); //print for now cause pre-GUI and testing purposes
@@ -61,18 +62,16 @@ public class Bidder extends User implements BidderInterface, Serializable {
 
 
     @Override
-    public Bidder login(String name, String pass) throws RemoteException {
+    public int login(String name, String pass) throws RemoteException {
 
-        DB db = new DB();
-        ArrayList<Bidder> Bidrlst = db.retrieveAllBidders();
-
+        ArrayList<Bidder> Bidrlst = db.getAllBidders();
         for (Bidder b : Bidrlst) {
             if (b.getUname().equals(name) && b.getUpass().equals(pass)) {
                 System.out.println("Logged in!");
-                return b;
+                return b.getuID();
             }
         }
         System.err.println("Error logging in");
-        return null;
+        return 0;
     }
 }

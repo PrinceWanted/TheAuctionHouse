@@ -33,7 +33,4 @@ public final class Transaction implements Serializable {
         return ITEM;
     }
 
-
-    
-
 }

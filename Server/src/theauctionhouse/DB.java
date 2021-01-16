@@ -206,5 +206,16 @@ public class DB {
         return results;
     }
 
+
+    public ArrayList<Bidder> getAllBidders() {
+        collection = database.getCollection("Bidder");
+        ArrayList<Bidder> result = new ArrayList();
+        ArrayList<Document> docs = collection.find().into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), Bidder.class));
+        }
+        return result;
+    }
+
 }
 

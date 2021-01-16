@@ -9,15 +9,14 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private int startingPrice;
-   // private User owner; owner is causing me trouble because i need to get user here to know what that is
-    // doing so will make me end up copying the entire project to the client
 
-    public Product(int ID, String name, String description, int startingPrice/*, User owner*/) {
+
+    public Product(int ID, String name, String description, int startingPrice) {
         this.ID = ID;
         this.name = name;
         this.description = description;
         this.startingPrice = startingPrice;
-       // this.owner = owner;
+
     }
 
     public int getID() {

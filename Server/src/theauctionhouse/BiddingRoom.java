@@ -25,9 +25,6 @@ public class BiddingRoom implements Serializable {
     }
 
 
-
-
-
     public int getRoomNumber() {
         return RoomNumber;
     }
@@ -76,18 +73,20 @@ public class BiddingRoom implements Serializable {
         HighestPrice = highestPrice;
     }
 
-    public void updateBidderCount(){
-        
+    public void updateBidderCount() {
+
     }
 
-    public void updateBiddingRoom(int x){
-        
+    public void updateBiddingRoom(int x) {
+
     }
-    public void deleteBiddingRoom(int x){
-        
+
+    public void deleteBiddingRoom(int x) {
+
     }
-    public void addToBiddingRoom(Product x){
-        
+
+    public void addToBiddingRoom(Product x) {
+
     }
 
 
