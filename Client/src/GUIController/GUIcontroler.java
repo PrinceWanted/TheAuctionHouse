@@ -1,17 +1,15 @@
 
 package GUIController;
 
-import GUI.Bidding_Room_UI;
-import GUI.Login;
+import GUI.*;
 import GUI.Login.*;
-import GUI.Moderator_Profile;
-import GUI.Pay;
 import theauctionhouse.Controller.BidderInterface;
 import theauctionhouse.Controller.ModeratorInterface;
 import theauctionhouse.Controller.SellerInterface;
 
 import java.rmi.AccessException;
 import java.rmi.registry.LocateRegistry;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +21,8 @@ import theauctionhouse.BidSession;
 import theauctionhouse.Bidder;
 import theauctionhouse.Moderator;
 import theauctionhouse.Seller;
+import theauctionhouse.BiddingRoom;
+import theauctionhouse.Product;
 
 public class GUIcontroler {
 
@@ -35,10 +35,11 @@ public class GUIcontroler {
     Moderator_Profile gui2 = new Moderator_Profile(m);
     Pay gui3;
     Bidding_Room_UI gui4;
-    
+    Bidder_Profile bp;
+    Seller_Profile sp;
     Registry r;
 
-    public GUIcontroler(Login gui, Moderator_Profile gui2, Pay gui3, Bidding_Room_UI gui4, Registry r) throws RemoteException {
+    public GUIcontroler(Login gui, Moderator_Profile gui2, Pay gui3, Bidding_Room_UI gui4, Bidder_Profile bp,Seller_Profile sp, Registry r) throws RemoteException {
         
         this.m = Moderator.getInstance();
         this.b = new Bidder();
@@ -48,6 +49,8 @@ public class GUIcontroler {
         this.gui2 = gui2 ;
         this.gui3 = gui3;
         this.gui4 = gui4;
+        this.bp = bp;
+        this.sp = sp;
 
         gui.getjButton().addActionListener(new GetLogin());
         gui2.getjButton().addActionListener(new RemoveProductBtn());
@@ -57,6 +60,10 @@ public class GUIcontroler {
         //gui4.getjButton().addActionListener(new bidBtn());
         gui4.getjButton2().addActionListener(new LogoutBtn());
         //gui3.getjButton().addActionListener(new paypriceBtn());
+        bp.getDisplayAllProducts().addActionListener(new DisplayProducts());
+        bp.getBidForProduct().addActionListener(new RegisterBid());
+        sp.getsellerProducts().addActionListener(new displaySellerProducts());
+        sp.getAddProduct().addActionListener(new addProduct());
     }
 
     class GetLogin implements ActionListener {
@@ -72,14 +79,14 @@ public class GUIcontroler {
                         r = LocateRegistry.getRegistry(1099);
                         BidderInterface b = (BidderInterface) r.lookup("BidderInterface");
                         b.login(username, password);
-                        gui.setVisible(false);
+                        bp.setVisible(true);
                         
                         
                     case "Seller":
                         r = LocateRegistry.getRegistry(1099);
                         SellerInterface s = (SellerInterface) r.lookup("SellerInterface");
                         s.login(username, password);
-                        gui.setVisible(false);
+                        sp.setVisible(true);
                         
 
                         
@@ -168,7 +175,99 @@ public class GUIcontroler {
             }
         }
     }
-    
+    class DisplayProducts implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            try{
+                r = LocateRegistry.getRegistry(1099);
+                BidderInterface b = (BidderInterface) r.lookup("Binterface");
+                String products = b.viewProductList(); //convert that function to return string
+                bp.getTextArea().setText(products);
+            }catch (AccessException e) {
+                e.printStackTrace();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            } catch (NotBoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+    class RegisterBid implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            try{
+                r = LocateRegistry.getRegistry(1099);
+                BidderInterface b = (BidderInterface) r.lookup("Binterface");
+                Product p = new Product(2,"Modelkit","plastic kit", 400);
+                //int roomNumber, int bidderCount, Product biddingProd, int biddingInsurance, Bidder highestBidder, int highestPrice, ArrayList<Bidder> biddersList
+                BiddingRoom br = new BiddingRoom(1,0,p,10,null,0,null);
+                //ArrayList<Bidder> biddersList, BiddingRoom room, Boolean isAvailable
+                ArrayList<Bidder>bidders = new ArrayList<Bidder>();
+                BidSession bs = new BidSession(bidders,br);
+                bs.addBidder(bp.getBidder());
+                System.out.println(bs);
+            }catch (AccessException e) {
+                e.printStackTrace();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            } catch (NotBoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    class displaySellerProducts implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent ae){
+            try{
+                r = LocateRegistry.getRegistry(1099);
+                SellerInterface s = (SellerInterface) r.lookup("Sellerinterface");
+                ArrayList<Product> products = s.getPostedProducts();
+                String list = "";
+                for (int i = 0; i < products.size(); i++) {
+                    list += products.get(i).toString() + "\n";
+                }
+                sp.getsellerProducts().setText(list);
+                //make an array list of products
+                //then get the arraylist from the interface and assign it to the array list made here
+                //make a string
+                //make a for loop getting to the toString of eachproduct object into the string, tho make sure an endline is made
+                //set that variable to the text area
+            }catch (AccessException e) {
+                e.printStackTrace();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            } catch (NotBoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    class addProduct implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent ae){
+            try{
+                r = LocateRegistry.getRegistry(1099);
+                SellerInterface s = (SellerInterface) r.lookup("Sellerinterface");
+                String Name,Description;
+                Name = sp.getProductName().getText();
+                Description = sp.getProductDescription().getText();
+                int ID = Integer.parseInt(sp.getProductID().getText());
+                int startPrice = Integer.parseInt(sp.getProductStartPrice().getText());
+                Product p = new Product(ID,Name,Description,startPrice);
+                s.postProduct(p);
+                System.out.println(s);
+            }catch (AccessException e) {
+                e.printStackTrace();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            } catch (NotBoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     /*class bidBtn implements ActionListener{
         
         @Override

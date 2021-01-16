@@ -17,7 +17,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
     }
     
-    public int m;
+    public Moderator m;
     public Seller s;
     public Bidder b;
     
