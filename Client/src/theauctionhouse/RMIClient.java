@@ -17,7 +17,7 @@ public class RMIClient {
 
             Scanner sc = new Scanner(System.in);
             System.out.println("Please enter your Credentials");
-/*
+
             System.out.print("User type:");
             type = sc.nextLine();
 
@@ -26,18 +26,32 @@ public class RMIClient {
 
             System.out.print("Password:");
             password = sc.nextLine();
-*/
+
             Registry registry = LocateRegistry.getRegistry(1099);
-          //  SellerInterface s = (SellerInterface) registry.lookup("Sellerinterface");
+           // SellerInterface s = (SellerInterface) registry.lookup("Sellerinterface");
 
 
 
-            // Seller B= new Seller();
-            //   B= s.login(username,password);
 
-            //    System.out.println(B.getUname());
+            //registry = LocateRegistry.getRegistry(1099);
+            BidderInterface BidInterface = (BidderInterface) registry.lookup("Binterface");
 
 
+
+            Bidder B = new Bidder();
+
+            B =  BidInterface.login(username,password);
+
+/*
+            Seller B = new Seller();
+            String x;
+            x =  s.login(username, password).getUname();
+            //SellerDTO DTO = s.getDTO();
+            //System.out.println(DTO.getName());
+
+            //System.out.println(B.getUname());
+
+*/
 /*
             switch (type) {
 
@@ -75,7 +89,7 @@ public class RMIClient {
             }
 
 */
-
+/*
             SellerInterface seller = (SellerInterface) registry.lookup("s");
             SellerDTO sellertest = seller.getDTO();
 
@@ -91,7 +105,7 @@ public class RMIClient {
             SellerDTO dsd = seller.getDTO();
             System.out.println(dsd.getName());
             System.out.println(dsd.getPostedProducts().get(0).getName());
-
+*/
 
 
         } catch (Exception e) {

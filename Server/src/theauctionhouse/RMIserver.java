@@ -34,7 +34,7 @@ public class RMIserver {
 
             SellerInterface Sellerinterface = new Seller();
 
-            reg.bind("s", Sellerinterface);
+            reg.bind("Sellerinterface", Sellerinterface);
             System.out.println("Seller server is ready!!");
 
 

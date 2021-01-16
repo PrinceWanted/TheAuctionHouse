@@ -67,11 +67,9 @@ public class Bidder extends User implements BidderInterface, Serializable {
         ArrayList<Bidder> Bidrlst = db.retrieveAllBidders();
 
         for (Bidder b : Bidrlst) {
-            if (b.getUname() == name && b.getUpass() == pass) {
+            if (b.getUname().equals(name) && b.getUpass().equals(pass)) {
                 System.out.println("Logged in!");
                 return b;
-            } else {
-                System.err.println("Wrong Credentials");
             }
         }
         System.err.println("Error logging in");

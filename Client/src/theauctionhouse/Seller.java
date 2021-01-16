@@ -8,7 +8,7 @@ public class Seller extends User implements Serializable {
 
     private float balance;
     private ArrayList<Product> postedProducts;
-    private ArrayList<Seller> SellerList;
+
 
     public Seller(int i, String hassan, String pass, String mail, int i1, String male, String hamada_street, int i2, int i3) throws RemoteException {
     }
@@ -21,26 +21,20 @@ public class Seller extends User implements Serializable {
     public Seller() throws RemoteException {
     }
 
-    public Seller(float balance, ArrayList<Product> postedProducts, ArrayList<Seller> sellerList) throws RemoteException {
+    public Seller(float balance, ArrayList<Product> postedProducts) throws RemoteException {
         this.balance = balance;
         this.postedProducts = postedProducts;
-        SellerList = sellerList;
+
     }
 
-    public Seller(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type, float balance, ArrayList<Product> postedProducts, ArrayList<Seller> sellerList) throws RemoteException {
+    public Seller(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type, float balance, ArrayList<Product> postedProducts) throws RemoteException {
         super(uID, uname, upass, umail, uage, gender, uaddress, unumber, type);
         this.balance = balance;
         this.postedProducts = postedProducts;
-        SellerList = sellerList;
+
     }
 
-    public ArrayList<Seller> getSellerList() {
-        return SellerList;
-    }
 
-    public void setSellerList(ArrayList<Seller> sellerList) {
-        SellerList = sellerList;
-    }
 
     public float getBalance() {
         return balance;

@@ -10,10 +10,12 @@ public class Seller extends User implements SellerInterface, Serializable {
 
     private float balance;
     private ArrayList<Product> postedProducts;
-    private ArrayList<Seller> SellerList;
+
+
 
     public Seller() throws RemoteException {
     }
+
     public Seller(int i, String hassan, String pass, String mail, int i1, String male, String hamada_street, int i2, int i3) throws RemoteException {
     }
 
@@ -36,26 +38,17 @@ public class Seller extends User implements SellerInterface, Serializable {
         super(port, csf, ssf);
     }
 
-    public Seller(float balance, ArrayList<Product> postedProducts, ArrayList<Seller> sellerList) throws RemoteException {
+    public Seller(float balance, ArrayList<Product> postedProducts) throws RemoteException {
         this.balance = balance;
         this.postedProducts = postedProducts;
-        SellerList = sellerList;
+
     }
 
-    public Seller(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type, float balance, ArrayList<Product> postedProducts, ArrayList<Seller> sellerList) throws RemoteException {
+    public Seller(int uID, String uname, String upass, String umail, int uage, String gender, String uaddress, int unumber, String type, float balance, ArrayList<Product> postedProducts) throws RemoteException {
         super(uID, uname, upass, umail, uage, gender, uaddress, unumber, type);
         this.balance = balance;
         this.postedProducts = postedProducts;
-        SellerList = sellerList;
-    }
 
-    public ArrayList<Seller> getSellerList() {
-
-        return SellerList;
-    }
-
-    public void setSellerList(ArrayList<Seller> sellerList) {
-        SellerList = sellerList;
     }
 
     public float getBalance() {
@@ -100,24 +93,22 @@ public class Seller extends User implements SellerInterface, Serializable {
         this.getPostedProducts().add(r);
     }
 
-
     @Override
     public Seller login(String name, String pass) throws RemoteException {
 
-        DB db= new DB();
-        ArrayList<Seller> allseller= db.retrieveAllSeller();
+        DB db = new DB();
+        ArrayList<Seller> allseller = db.retrieveAllSeller();
         for (Seller seller : allseller) {
 
-            if (seller.getUname().equals(name)  && seller.getUpass().equals(pass) ) {
+            if (seller.getUname().equals(name) && seller.getUpass().equals(pass)) {
                 System.out.println("Logged in!");
                 System.out.println(seller.getUname());
                 return seller;
 
-            }
-            else {
+            } else {
                 System.err.println("Wrong Credentials.");
             }
         }
-  return null;
+        return null;
     }
 }
