@@ -9,7 +9,7 @@ import java.rmi.server.RMIServerSocketFactory;
 import java.util.ArrayList;
 
 public class Seller extends User implements SellerInterface, Serializable {
-    DB db = new DB();
+
     private float balance;
     private ArrayList<Product> postedProducts;
 
@@ -97,7 +97,7 @@ public class Seller extends User implements SellerInterface, Serializable {
     @Override
     public int login(String name, String pass) throws RemoteException {
 
-
+        DB db = new DB();
         ArrayList<Seller> allseller = db.retrieveAllSeller();
 
         for (Seller seller : allseller) {
@@ -115,6 +115,7 @@ public class Seller extends User implements SellerInterface, Serializable {
 
     @Override
     public ArrayList<Seller> getAllsellers() throws RemoteException {
+        DB db = new DB();
         ArrayList<Seller> allseller = db.retrieveAllSeller();
         return allseller;
     }

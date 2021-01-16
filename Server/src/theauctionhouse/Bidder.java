@@ -8,7 +8,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class Bidder extends User implements BidderInterface, Serializable {
-    DB db = new DB();
+
     private int balance;
 
     public Bidder() throws RemoteException {
@@ -53,7 +53,7 @@ public class Bidder extends User implements BidderInterface, Serializable {
 
     @Override
     public void viewProductList() throws RemoteException {
-
+        DB db = new DB();
         ArrayList<Product> products = db.getALlProducts();
         for (int i = 0; i < products.size(); i++) {
             System.out.println(products.get(i).toString()); //print for now cause pre-GUI and testing purposes
@@ -63,7 +63,7 @@ public class Bidder extends User implements BidderInterface, Serializable {
 
     @Override
     public int login(String name, String pass) throws RemoteException {
-
+        DB db = new DB();
         ArrayList<Bidder> Bidrlst = db.getAllBidders();
         for (Bidder b : Bidrlst) {
             if (b.getUname().equals(name) && b.getUpass().equals(pass)) {
