@@ -157,11 +157,18 @@ public class DB {
         return user;
     }
 
-    public Moderator retrieveModerator(String name) {
+    public Moderator retrieveModerator() {
         collection = database.getCollection("Moderator");
-        Document Result = (Document) collection.find(Filters.all("Uname", name)).first();
+        Document Result = (Document) collection.find().first();
         Moderator user = gson.fromJson(Result.toJson(), Moderator.class);
         return user;
+    }
+
+    public void insertModerator(Moderator s) {
+        collection = database.getCollection("Moderator");
+
+        collection.insertOne(Document.parse(gson.toJson(s)));
+        System.out.println("Moderator inserted");
     }
 
     public void UserLogin(String type, String name, String pass) {

@@ -14,6 +14,7 @@ public class RMIserver {
 
         DB database = new DB();
 
+
         try {
             Registry reg = LocateRegistry.createRegistry(1099);
             //Bidder

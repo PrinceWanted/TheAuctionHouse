@@ -14,7 +14,7 @@ public class RMIClient {
     public static void main(String[] args) throws RemoteException {
 
 
-      //  Moderator Mod= Moderator.getInstance();
+        Moderator Mod= Moderator.getInstance();
         int CurrentUserID;
         int userType;
         String username, password;
@@ -103,7 +103,35 @@ public class RMIClient {
                     break;
                 case 3:
 
-                    System.out.println("HI im case 3");
+                    ModeratorInterface ModI = (ModeratorInterface) registry.lookup("ModInterface");
+
+                    CurrentUserID = ModI.login(username, password);
+                    //CurrentUserID = bidder.login("Mahmoud", "pass");
+                    //System.out.println(CurrentUserID);
+
+
+                    if (CurrentUserID != 0) {
+                        //cant send a whole user due to proxy error
+                        // so sending user data one by one
+                        Mod.setuID(ModI.login(username, password));
+                        Mod.setUname(ModI.loginUname(username, password));
+                        Mod.setUpass(ModI.loginUpass(username, password));
+                        Mod.setGender(ModI.loginUgender(username, password));
+                        Mod.setUpass(ModI.loginUpass(username, password));
+                        Mod.setUname(ModI.loginUname(username, password));
+                        Mod.setUpass(ModI.loginUpass(username, password));
+                        Mod.setUmail(ModI.loginUmail(username, password));
+                        Mod.setUage(ModI.loginUage(username, password));
+                        Mod.setUaddress(ModI.loginUaddress(username, password));
+                        Mod.setUnumber(ModI.loginUnumber(username, password));
+
+
+                    }
+                    System.out.println(Mod.getUname());
+                    System.out.println(Mod.getGender());
+                    System.out.println(Mod.getuID());
+                    System.out.println(Mod.getUpass());
+
                     break;
 
             }
