@@ -10,6 +10,7 @@ import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -216,6 +217,56 @@ public class DB {
         }
         return result;
     }
+
+    public float retrieveBalanceSeller(int ID) throws RemoteException {
+        collection = database.getCollection("Seller");
+        Seller s = new Seller();
+        Document Result = (Document) collection.find(Filters.eq("uID", ID)).first();
+        s = gson.fromJson(Result.toJson(), Seller.class);
+        return s.getBalance();
+    }
+
+    public int retrieveBalanceBidder(int ID) throws RemoteException {
+        collection = database.getCollection("Bidder");
+        Bidder s = new Bidder();
+        Document Result = (Document) collection.find(Filters.eq("uID", ID)).first();
+        s = gson.fromJson(Result.toJson(), Bidder.class);
+        return s.getBalance();
+    }
+
+    public void editBalance(int balance, int BidderID, int SellerID) throws RemoteException {
+        collection = database.getCollection("Bidder");
+        collection.updateOne(Filters.eq("uID", BidderID), Updates.set("balance", retrieveBalanceSeller(BidderID)-balance));
+        collection = database.getCollection("Seller");
+        collection.updateOne(Filters.eq("uID", SellerID), Updates.set("balance", retrieveBalanceBidder(SellerID)+balance));
+    }
+
+    public Seller retrievesSeller(String name) {
+        collection = database.getCollection("Seller");
+        Document Result = (Document) collection.find(Filters.all("Uname", name)).first();
+        Seller user = gson.fromJson(Result.toJson(), Seller.class);
+        return user;
+    }
+
+    public Bidder retrievebBidder(String name) {
+        collection = database.getCollection("Bidder");
+        Document Result = (Document) collection.find(Filters.all("Uname", name)).first();
+        Bidder user = gson.fromJson(Result.toJson(), Bidder.class);
+        return user;
+    }
+
+    public void BanSeller(String mail) {
+        collection = database.getCollection("Seller");
+        collection.deleteOne(Filters.eq("Umail", mail));
+        System.out.println("User Deleted");
+    }
+
+    public void BanBidder(String mail) {
+        collection = database.getCollection("Bidder");
+        collection.deleteOne(Filters.eq("Umail", mail));
+        System.out.println("User Deleted");
+    }
+
 
 }
 

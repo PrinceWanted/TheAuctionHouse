@@ -43,6 +43,20 @@ public class Moderator extends User implements ModeratorInterface, Serializable 
     }
 
     @Override
+    public void BanSeller(String mail) throws RemoteException {
+
+        DB db = new DB();
+        db.BanSeller(mail);
+    }
+
+    @Override
+    public void BanBidder(String mail) throws RemoteException {
+
+        DB db = new DB();
+        db.BanBidder(mail);
+    }
+
+    @Override
     public int login(String name, String pass) throws RemoteException {
         if (name.equals(this.getUname()) && pass.equals(this.getUpass())) {
 
