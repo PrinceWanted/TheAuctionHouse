@@ -56,7 +56,7 @@ public class Bidder extends User implements BidderInterface, Serializable {
         DB db = new DB();
         ArrayList<Product> products = db.getALlProducts();
         for (int i = 0; i < products.size(); i++) {
-            System.out.println(products.get(i).toString()); //print for now cause pre-GUI and testing purposes
+            System.out.println(products.get(i).toString());
         }
     }
 

@@ -114,10 +114,150 @@ public class Seller extends User implements SellerInterface, Serializable {
     }
 
     @Override
-    public ArrayList<Seller> getAllsellers() throws RemoteException {
+    public String loginUname(String name, String pass) throws RemoteException {
         DB db = new DB();
         ArrayList<Seller> allseller = db.retrieveAllSeller();
-        return allseller;
+
+        for (Seller seller : allseller) {
+
+            if (seller.getUname().equals(name) && seller.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(seller.getUname());
+                return seller.getUname();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return null;
     }
+
+    @Override
+    public String loginUpass(String name, String pass) throws RemoteException {
+        DB db = new DB();
+        ArrayList<Seller> allseller = db.retrieveAllSeller();
+
+        for (Seller seller : allseller) {
+
+            if (seller.getUname().equals(name) && seller.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(seller.getUname());
+                return seller.getUpass();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return null;
+    }
+
+    @Override
+    public String loginUmail(String name, String pass) throws RemoteException {
+
+        DB db = new DB();
+        ArrayList<Seller> allseller = db.retrieveAllSeller();
+
+        for (Seller seller : allseller) {
+
+            if (seller.getUname().equals(name) && seller.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(seller.getUname());
+                return seller.getUmail();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return null;
+
+    }
+
+    @Override
+    public int loginUage(String name, String pass) throws RemoteException {
+        DB db = new DB();
+        ArrayList<Seller> allseller = db.retrieveAllSeller();
+
+        for (Seller seller : allseller) {
+
+            if (seller.getUname().equals(name) && seller.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(seller.getUname());
+                return seller.getUage();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return 0;
+    }
+
+    @Override
+    public String loginUgender(String name, String pass) throws RemoteException {
+        DB db = new DB();
+        ArrayList<Seller> allseller = db.retrieveAllSeller();
+
+        for (Seller seller : allseller) {
+
+            if (seller.getUname().equals(name) && seller.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(seller.getUname());
+                return seller.getGender();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return null;
+    }
+
+    @Override
+    public String loginUaddress(String name, String pass) throws RemoteException {
+        DB db = new DB();
+        ArrayList<Seller> allseller = db.retrieveAllSeller();
+
+        for (Seller seller : allseller) {
+
+            if (seller.getUname().equals(name) && seller.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(seller.getUname());
+                return seller.getUaddress();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return null;
+    }
+
+    @Override
+    public int loginUnumber(String name, String pass) throws RemoteException {
+        DB db = new DB();
+        ArrayList<Seller> allseller = db.retrieveAllSeller();
+
+        for (Seller seller : allseller) {
+
+            if (seller.getUname().equals(name) && seller.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(seller.getUname());
+                return seller.getUnumber();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return 0;
+    }
+
+    @Override
+    public float loginBlanace(String name, String pass) throws RemoteException {
+        DB db = new DB();
+        ArrayList<Seller> allseller = db.retrieveAllSeller();
+
+        for (Seller seller : allseller) {
+
+            if (seller.getUname().equals(name) && seller.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(seller.getUname());
+                return seller.getBalance();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return 0;
+    }
+
 
 }
