@@ -16,6 +16,7 @@ public interface SellerInterface extends Remote {
     public void postProduct(Product r) throws RemoteException;
 
     public int login(String name, String pass) throws RemoteException;
+    public ArrayList<Product> getPostedProducts() throws RemoteException;
 
     public String loginUname(String name, String pass) throws RemoteException;
 

@@ -92,6 +92,8 @@ public class Seller extends User implements SellerInterface, Serializable {
     public void postProduct(Product r) throws RemoteException {
         Moderator.getInstance().getPendingProducts().add(r);
         this.getPostedProducts().add(r);
+        DB db = new DB();
+        db.insertProduct(r);
     }
 
     @Override

@@ -30,6 +30,11 @@ public class BidSession implements Serializable {
         Room = room;
     }
 
-
+    public void addBidder(Bidder b){
+        ArrayList<Bidder> b2 = new ArrayList<Bidder>();
+        b2 = this.getBiddersList();
+        b2.add(b);
+        this.setBiddersList(b2);
+    }
 
 }

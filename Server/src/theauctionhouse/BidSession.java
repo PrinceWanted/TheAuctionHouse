@@ -46,5 +46,10 @@ public class BidSession implements Serializable {
         return null;
     }
 
-
+    public void addBidder(Bidder b){
+        ArrayList<Bidder> b2 = new ArrayList<Bidder>();
+        b2 = this.getBiddersList();
+        b2.add(b);
+        this.setBiddersList(b2);
+    }
 }

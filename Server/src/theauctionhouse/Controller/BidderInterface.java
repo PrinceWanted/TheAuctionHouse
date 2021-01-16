@@ -14,7 +14,7 @@ public interface BidderInterface extends Remote {
 
     public void regToRoom(BidSession bs) throws RemoteException;
 
-    public void viewProductList() throws RemoteException;
+    public String viewProductList() throws RemoteException;
 
     public int login(String name, String pass) throws RemoteException;
 

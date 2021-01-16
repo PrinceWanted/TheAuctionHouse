@@ -52,12 +52,17 @@ public class Bidder extends User implements BidderInterface, Serializable {
     }
 
     @Override
-    public void viewProductList() throws RemoteException {
+    public String viewProductList() throws RemoteException {
+
+        //insert database function? -on it!
         DB db = new DB();
+        String list = "";
         ArrayList<Product> products = db.getALlProducts();
         for (int i = 0; i < products.size(); i++) {
-            System.out.println(products.get(i).toString());
+            System.out.println(products.get(i).toString()); //print for now cause pre-GUI and testing purposes
+            list += products.get(i).toString();
         }
+        return list;
     }
 
 
