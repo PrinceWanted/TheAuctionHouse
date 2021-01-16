@@ -2,7 +2,6 @@
 package GUI;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import theauctionhouse.Bidder;
@@ -17,7 +16,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Moderator m;
+    public int m;
     public Seller s;
     public Bidder b;
     
@@ -146,13 +145,10 @@ public class Login extends javax.swing.JFrame {
         return jPasswordField1;
     }
 
-    public Moderator getM() {
+    public int getM() {
         return m;
     }
 
-    public void setM(Moderator m) {
-        this.m = m;
-    }
     
     
     

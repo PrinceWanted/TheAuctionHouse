@@ -268,21 +268,21 @@ public class GUIcontroler {
             }
         }
     }
-    /*class bidBtn implements ActionListener{
+    class bidBtn implements ActionListener{
         
         @Override
         public void actionPerformed(ActionEvent ae) {
             try {
-                gui4.
+                bp.setVisible(true);
                 
 
-                } catch (RemoteException | NotBoundException remoteException) {
-                Logger.getLogger(controller.class.getName()).log(Level.SEVERE, null, remoteException);
+                } catch ( Exception remoteException) {
+                Logger.getLogger(GUIcontroler.class.getName()).log(Level.SEVERE, null, remoteException);
             }
         }
     }
     
-    class paypriceBtn implements ActionListener{
+    /*class paypriceBtn implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent ae) {
             try {
