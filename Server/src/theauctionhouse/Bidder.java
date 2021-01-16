@@ -64,14 +64,164 @@ public class Bidder extends User implements BidderInterface, Serializable {
     @Override
     public int login(String name, String pass) throws RemoteException {
         DB db = new DB();
-        ArrayList<Bidder> Bidrlst = db.getAllBidders();
-        for (Bidder b : Bidrlst) {
-            if (b.getUname().equals(name) && b.getUpass().equals(pass)) {
+        ArrayList<Bidder> allBidders = db.retrieveAllBidders();
+
+        for (Bidder bidder : allBidders) {
+
+            if (bidder.getUname().equals(name) && bidder.getUpass().equals(pass)) {
                 System.out.println("Logged in!");
-                return b.getuID();
-            }
+                System.out.println(bidder.getUname());
+                return bidder.getuID();
+            } else
+                System.err.println("Wrong Credentials.");
         }
-        System.err.println("Error logging in");
+
         return 0;
     }
+
+    @Override
+    public String loginUname(String name, String pass) throws RemoteException {
+        DB db = new DB();
+        ArrayList<Bidder> allBidders = db.retrieveAllBidders();
+
+        for (Bidder bidder : allBidders) {
+
+            if (bidder.getUname().equals(name) && bidder.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(bidder.getUname());
+                return bidder.getUname();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return null;
+    }
+
+    @Override
+    public String loginUpass(String name, String pass) throws RemoteException {
+        DB db = new DB();
+        ArrayList<Bidder> allBidders = db.retrieveAllBidders();
+
+        for (Bidder bidder : allBidders) {
+
+            if (bidder.getUname().equals(name) && bidder.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(bidder.getUname());
+                return bidder.getUpass();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return null;
+    }
+
+    @Override
+    public String loginUmail(String name, String pass) throws RemoteException {
+
+        DB db = new DB();
+        ArrayList<Bidder> allBidders = db.retrieveAllBidders();
+
+        for (Bidder bidder : allBidders) {
+
+            if (bidder.getUname().equals(name) && bidder.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(bidder.getUname());
+                return bidder.getUmail();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return null;
+
+    }
+
+    @Override
+    public int loginUage(String name, String pass) throws RemoteException {
+        DB db = new DB();
+        ArrayList<Bidder> allBidders = db.retrieveAllBidders();
+
+        for (Bidder bidder : allBidders) {
+
+            if (bidder.getUname().equals(name) && bidder.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(bidder.getUname());
+                return bidder.getUage();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return 0;
+    }
+
+    @Override
+    public String loginUgender(String name, String pass) throws RemoteException {
+        DB db = new DB();
+        ArrayList<Bidder> allBidders = db.retrieveAllBidders();
+        for (Bidder bidder : allBidders) {
+
+            if (bidder.getUname().equals(name) && bidder.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(bidder.getUname());
+                return bidder.getGender();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return null;
+    }
+
+    @Override
+    public String loginUaddress(String name, String pass) throws RemoteException {
+        DB db = new DB();
+        ArrayList<Bidder> allBidders = db.retrieveAllBidders();
+
+        for (Bidder bidder : allBidders) {
+
+            if (bidder.getUname().equals(name) && bidder.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(bidder.getUname());
+                return bidder.getUaddress();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return null;
+    }
+
+    @Override
+    public int loginUnumber(String name, String pass) throws RemoteException {
+        DB db = new DB();
+        ArrayList<Bidder> allBidders = db.retrieveAllBidders();
+
+        for (Bidder bidder : allBidders) {
+
+            if (bidder.getUname().equals(name) && bidder.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(bidder.getUname());
+                return bidder.getUnumber();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return 0;
+    }
+
+    @Override
+    public int loginBlanace(String name, String pass) throws RemoteException {
+        DB db = new DB();
+        ArrayList<Bidder> allBidders = db.retrieveAllBidders();
+
+        for (Bidder bidder : allBidders) {
+
+            if (bidder.getUname().equals(name) && bidder.getUpass().equals(pass)) {
+                System.out.println("Logged in!");
+                System.out.println(bidder.getUname());
+                return bidder.getBalance();
+            } else
+                System.err.println("Wrong Credentials.");
+        }
+
+        return 0;
+    }
+
 }
